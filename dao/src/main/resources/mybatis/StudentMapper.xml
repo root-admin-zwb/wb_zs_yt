@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.StMapper">
+
+
+    <select id="findAll" resultType="com.bw.pojo.StAndType">
+        select * from t_st0218 s,t_type0218 t where s.tid = t.tid
+        and s.del!=1
+    </select>
+
+    <select id="type" parameterType="int" resultType="com.bw.pojo.StAndType">
+        select * from t_st0218 s,t_type0218 t where s.tid = t.tid and t.tid = #{tid}
+        and s.del!=1
+    </select>
+
+    <select id="findtwo" parameterType="String" resultType="com.bw.pojo.StAndType">
+        select * from t_st0218 s,t_type0218 t where s.tid = t.tid and s.stype = #{stype}
+        and s.del!=1
+    </select>
+
+    <select id="typetwo" resultType="com.bw.pojo.StAndType">
+        select * from t_st0218 s,t_type0218 t where s.tid = t.tid and t.tid = ${tid}
+        and s.stype = '${stype}' and s.del!=1
+    </select>
+
+    <select id="add" parameterType="com.bw.pojo.St">
+        insert into t_st0218 values(0,#{sname},#{sa},#{sb},#{sc},#{sd},#{stype},#{send},#{score},#{tid},0)
+    </select>
+
+    <select id="del" parameterType="int">
+        update t_st0218 set del=1 where sid=#{sid}
+    </select>
+    
+
+</mapper>
